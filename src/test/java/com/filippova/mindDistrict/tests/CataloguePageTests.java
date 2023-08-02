@@ -17,7 +17,7 @@ public class CataloguePageTests extends TestBase {
 
         // navigating back to home page and verifying training completion
         catalogueHelper.navigateToHomePage();
-        By finishedStatusTextLocator = By.xpath("//div[@id='primary-tools']/div[1]/a/div[1]/span/span[text()='Finished']");
+        final By finishedStatusTextLocator = By.xpath("//div[@id='primary-tools']/div[1]/a/div[1]/span/span[text()='Finished']");
         assertTrue(loginHelper.isElementPresentByLocator(finishedStatusTextLocator));
     }
 
@@ -31,7 +31,7 @@ public class CataloguePageTests extends TestBase {
 
         // navigating back to home page and verifying diary completion
         catalogueHelper.navigateToHomePage();
-        By savedDiaryLocator = By.xpath("//div[@id='secondary-tools']/div[1]/a");
+        final By savedDiaryLocator = By.xpath("//div[@id='secondary-tools']/div[1]/a");
         catalogueHelper.scrollElementIntoView(savedDiaryLocator);
         assertTrue(loginHelper.isElementPresentByLocator(savedDiaryLocator));
     }

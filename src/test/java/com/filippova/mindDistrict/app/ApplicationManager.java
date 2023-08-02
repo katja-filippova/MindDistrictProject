@@ -36,16 +36,25 @@ public class ApplicationManager {
     private WebDriver wd;
     private LoginHelper loginHelper;
     private CatalogueHelper catalogueHelper;
+    private Properties appProperties;
 
     public void init() {
-        String webdriverLocation = getProperties().getProperty(browser.browserName());
+        appProperties = getProperties();
 
-        if (CHROME.equals(browser)) {
-            System.setProperty("webdriver.chrome.driver", webdriverLocation);
-            wd = initWebDriver(ChromeDriver.class);
-        } else if (FIREFOX.equals(browser)) {
-            System.setProperty("webdriver.gecko.driver", webdriverLocation);
-            wd = initWebDriver(FirefoxDriver.class);
+        final String browserName = browser.browserName();
+        final String webdriverLocation = appProperties.getProperty(browserName);
+
+        switch (browserName) {
+            case "chrome":
+                System.setProperty("webdriver.chrome.driver", webdriverLocation);
+                wd = initWebDriver(ChromeDriver.class);
+                break;
+            case "firefox":
+                System.setProperty("webdriver.gecko.driver", webdriverLocation);
+                wd = initWebDriver(FirefoxDriver.class);
+                break;
+            default:
+                throw new RuntimeException("Unexpected browser name");
         }
 
         wd.manage().window().maximize();
@@ -66,8 +75,8 @@ public class ApplicationManager {
     }
 
     private Properties getProperties() {
-        Properties properties = new Properties();
-        try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("webdriver.properties")) {
+        final Properties properties = new Properties();
+        try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("app.properties")) {
             properties.load(inputStream);
         } catch (IOException e) {
             log.error("Can't load webdriver properties", e);

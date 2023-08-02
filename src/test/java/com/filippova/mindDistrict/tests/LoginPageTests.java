@@ -10,6 +10,7 @@ import static org.testng.Assert.assertTrue;
 public class LoginPageTests extends TestBase {
 
     private static final String INVALID_TEST_EMAIL = "invalid@minddistrict.ru";
+    private static final String INVALID_PASSWORD = "invalid_password";
 
     private static final String EXPECTED_AUTH_COOKIE_NAME = "__Host-minddistrict.id";
 
@@ -26,7 +27,7 @@ public class LoginPageTests extends TestBase {
     @Test
     public void testUserLoginWithInvalidCredentials() throws InterruptedException {
         // logging in with invalid credentials
-        final User user = User.builder().email(INVALID_TEST_EMAIL).password(TEST_PWD).build();
+        final User user = User.builder().email(INVALID_TEST_EMAIL).password(INVALID_PASSWORD).build();
         loginHelper.fillInLoginFormAndClickSubmitButton(user);
 
         // checking in error notification message and auth cookie absence
