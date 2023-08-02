@@ -18,10 +18,6 @@ import java.lang.reflect.Method;
 public abstract class TestBase {
 
     private static final Browser BROWSER = Browser.CHROME; // = Browser.FIREFOX;
-    static final String TEST_EMAIL = "testing+katja@minddistrict.com";
-    static final String TEST_PWD = "TestingIsC00l!";
-
-    static final int DEFAULT_SLEEP_IN_MILLIS = 1000;
 
     private final ApplicationManager app = new ApplicationManager(BROWSER);
 
@@ -56,7 +52,10 @@ public abstract class TestBase {
     }
 
     void loginUserWithValidCredentials() throws InterruptedException {
-        final User user = User.builder().email(TEST_EMAIL).password(TEST_PWD).build();
+        final String userEmail = app.getAppProperties().getProperty("userEmail");
+        final String userPassword = app.getAppProperties().getProperty("userPassword");
+
+        final User user = User.builder().email(userEmail).password(userPassword).build();
 
         // logging in with valid credentials
         loginHelper.fillInLoginFormAndClickSubmitButton(user);

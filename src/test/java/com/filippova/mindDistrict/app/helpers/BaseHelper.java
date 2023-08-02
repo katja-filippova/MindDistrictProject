@@ -19,7 +19,7 @@ public abstract class BaseHelper {
     private final WebDriver wd;
     static final int DEFAULT_SLEEP_IN_MILLIS = 1000;
 
-    public void fillInInputData(By locator, String inputInfo) {
+    void fillInInputData(By locator, String inputInfo) {
         if (inputInfo != null) {
             findElementByLocatorAndClick(locator);
             wd.findElement(locator).clear();
@@ -27,11 +27,11 @@ public abstract class BaseHelper {
         }
     }
 
-    public By getElementLocatorByLabel(String checkboxLabel) {
+    By getElementLocatorByLabel(String checkboxLabel) {
         return By.xpath("//*[ contains (text(), \"" + checkboxLabel + "\" ) ]");
     }
 
-    public void findElementByLocatorAndClick(By locator) {
+    void findElementByLocatorAndClick(By locator) {
         wd.findElement(locator).click();
     }
 
@@ -54,12 +54,12 @@ public abstract class BaseHelper {
         scrollElementIntoViewWithCorrection(elementLocator, null);
     }
 
-    public void scrollToElementAndClick(By locator) throws InterruptedException {
+    void scrollToElementAndClick(By locator) throws InterruptedException {
         scrollElementIntoView(locator);
         findElementByLocatorAndClick(locator);
     }
 
-    public void scrollElementIntoViewWithCorrection(By elementLocator, Integer verticalCorrectionInPixels) throws InterruptedException {
+    void scrollElementIntoViewWithCorrection(By elementLocator, Integer verticalCorrectionInPixels) throws InterruptedException {
         defaultSleep();
         WebElement element = wd.findElement(elementLocator);
         JavascriptExecutor jsExecutor = (JavascriptExecutor) wd;
@@ -68,12 +68,12 @@ public abstract class BaseHelper {
         defaultSleep();
     }
 
-    public void scrollToElementWithCorrectionAndClick(By locator, Integer verticalCorrectionInPixels) throws InterruptedException {
+    void scrollToElementWithCorrectionAndClick(By locator, Integer verticalCorrectionInPixels) throws InterruptedException {
         scrollElementIntoViewWithCorrection(locator, verticalCorrectionInPixels);
         findElementByLocatorAndClick(locator);
     }
 
-    public void scrollToElementWithCorrectionAndFillInRandomData(By locator, Integer verticalCorrectionInPixels) throws InterruptedException {
+    void scrollToElementWithCorrectionAndFillInRandomData(By locator, Integer verticalCorrectionInPixels) throws InterruptedException {
         scrollElementIntoViewWithCorrection(locator, verticalCorrectionInPixels);
         fillInInputData(locator, getRandomString());
     }
@@ -85,7 +85,7 @@ public abstract class BaseHelper {
         return screenshot.getAbsolutePath();
     }
 
-    public String getRandomString() {
+    String getRandomString() {
         final int minStringLength = 10;
         final int maxStringLength = 50;
         int randomStringLength = ThreadLocalRandom.current().nextInt(minStringLength, maxStringLength + 1);

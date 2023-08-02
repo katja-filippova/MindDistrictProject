@@ -12,34 +12,34 @@ public class CatalogueHelper extends BaseHelper {
     }
 
     public void navigateToCataloguePage() {
-        By catalogueNavigationButtonLocator = By.xpath("//nav[@class='header__navigation']/ul/li[2]");
+        final By catalogueNavigationButtonLocator = By.xpath("//nav[@class='header__navigation']/ul/li[2]");
         findElementByLocatorAndClick(catalogueNavigationButtonLocator);
     }
 
     public void navigateToHomePage() {
-        By homePageNavigationButtonLocator = By.xpath("//nav[@class='header__navigation']/ul/li[1]");
+        final By homePageNavigationButtonLocator = By.xpath("//nav[@class='header__navigation']/ul/li[1]");
         findElementByLocatorAndClick(homePageNavigationButtonLocator);
     }
 
     public void selectAndCompleteTrainingFromCatalogue() throws InterruptedException {
         // selecting module
-        By moduleForTestAutomationLinkLocator = By.xpath("//ul[@class='catalogue-cards']/li[3]");
+        final By moduleForTestAutomationLinkLocator = By.xpath("//ul[@class='catalogue-cards']/li[3]");
         scrollToElementAndClick(moduleForTestAutomationLinkLocator);
 
         // starting module
-        By startModuleButtonLocator = By.id("form_actions_start");
+        final By startModuleButtonLocator = By.id("form_actions_start");
         findElementByLocatorAndClick(startModuleButtonLocator);
 
         // filling in input form
-        By insertFieldLocator = By.id("2d955666834b4becad80d67e67388ca4");
+        final By insertFieldLocator = By.id("2d955666834b4becad80d67e67388ca4");
         fillInInputData(insertFieldLocator, getRandomString());
 
         // selecting checkbox
-        By numberOfRatsCheckboxOptionLocator = getElementLocatorByLabel("5-7");
+        final By numberOfRatsCheckboxOptionLocator = getElementLocatorByLabel("5-7");
         scrollToElementAndClick(numberOfRatsCheckboxOptionLocator);
 
         // selecting radiobutton
-        By kindOfRatRadiobuttonOptionLocator = getElementLocatorByLabel("A skinny rat.");
+        final By kindOfRatRadiobuttonOptionLocator = getElementLocatorByLabel("A skinny rat.");
         scrollToElementAndClick(kindOfRatRadiobuttonOptionLocator);
 
         // navigate to page 2
@@ -47,7 +47,7 @@ public class CatalogueHelper extends BaseHelper {
         // navigate to page 3
         scrollToContinueButtonAndClick();
         // navigate to page 4
-        By tryMiceOptionButtonLocator = By.xpath("//element-section-options/div/div/button[2]");
+        final By tryMiceOptionButtonLocator = By.xpath("//element-section-options/div/div/button[2]");
         scrollToElementAndClick(tryMiceOptionButtonLocator);
         // navigate to page 5
         scrollToContinueButtonAndClick();
@@ -63,35 +63,35 @@ public class CatalogueHelper extends BaseHelper {
     public void selectAndCompleteDiaryFromCatalogue() throws InterruptedException {
         // selecting diary
         defaultSleep();
-        By moduleEmotionsWithDiary = By.xpath("//ul[@class='catalogue-cards']/li[2]");
+        final By moduleEmotionsWithDiary = By.xpath("//ul[@class='catalogue-cards']/li[2]");
         findElementByLocatorAndClick(moduleEmotionsWithDiary);
 
         // starting diary module
-        By startDiaryModuleButtonLocator = By.id("form_actions_start");
+        final By startDiaryModuleButtonLocator = By.id("form_actions_start");
         findElementByLocatorAndClick(startDiaryModuleButtonLocator);
 
         // diary steps
         // step 1
         defaultSleep();
-        By moodChoosingIconLocator = By.xpath("//div[@id='content']/form/div[2]/div[2]/div/a[1]");
+        final By moodChoosingIconLocator = By.xpath("//div[@id='content']/form/div[2]/div[2]/div/a[1]");
         findElementByLocatorAndClick(moodChoosingIconLocator);
         // step 2
-        By emotionSliderLocator = By.xpath("//md-legacy-provider/div/div/form/div[3]/div[2]/div");
+        final By emotionSliderLocator = By.xpath("//md-legacy-provider/div/div/form/div[3]/div[2]/div");
         scrollToElementWithCorrectionAndClick(emotionSliderLocator, HEADER_HEIGHT_CORRECTION_IN_PIXELS);
         // step 3
-        By bodyFeelingInputLocator = By.id("form.text_3");
+        final By bodyFeelingInputLocator = By.id("form.text_3");
         scrollToElementWithCorrectionAndFillInRandomData(bodyFeelingInputLocator, HEADER_HEIGHT_CORRECTION_IN_PIXELS);
         // step 4
-        By currentSituationInputLocator = By.id("form.text_2");
+        final By currentSituationInputLocator = By.id("form.text_2");
         scrollToElementWithCorrectionAndFillInRandomData(currentSituationInputLocator, HEADER_HEIGHT_CORRECTION_IN_PIXELS);
 
         // saving diary
-        By saveDiaryButtonLocator = By.id("form_actions_save");
+        final By saveDiaryButtonLocator = By.id("form_actions_save");
         scrollToElementWithCorrectionAndClick(saveDiaryButtonLocator, HEADER_HEIGHT_CORRECTION_IN_PIXELS);
     }
 
     private void scrollToContinueButtonAndClick() throws InterruptedException {
-        By continueButtonLocator = By.xpath("//button[@title='Continue']");
+        final By continueButtonLocator = By.xpath("//button[@title='Continue']");
         scrollToElementAndClick(continueButtonLocator);
     }
 }
