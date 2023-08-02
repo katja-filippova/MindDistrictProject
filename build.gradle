@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'com.filippova.mindDistrict'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.seleniumhq.selenium:selenium-java:4.10.0'
+    implementation 'org.testng:testng:7.8.0'
+    implementation 'ch.qos.logback:logback-classic:1.4.8'
+    implementation 'org.apache.commons:commons-lang3:3.13.0'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.28'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+}
+
+task testNG(type: Test) {
+    useTestNG()
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+}
